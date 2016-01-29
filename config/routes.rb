@@ -1,6 +1,21 @@
 Rails.application.routes.draw do
+
+
+  # get 'shops/index'
+
+  # get 'shops/show'
+
+  # get '/shops/:shop_id/products' => 'shops#products'
+
   devise_for :shops
   devise_for :users
+
+  resources :categories, only: :show
+  resources :products, only: :show
+  resources :shops, only: [:show, :index] do
+    get :products
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

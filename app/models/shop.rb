@@ -5,4 +5,5 @@ class Shop < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   acts_as_commentable
   has_and_belongs_to_many :achievements
+  has_many :products
 end
