@@ -6,4 +6,6 @@ class Shop < ActiveRecord::Base
   acts_as_commentable
   has_and_belongs_to_many :achievements
   has_many :products
+  enum role: {farmer: 0, admin: 1}
+  has_many :orders
 end

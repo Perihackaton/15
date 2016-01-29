@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
-
-
-  # get 'shops/index'
-
-  # get 'shops/show'
-
-  # get '/shops/:shop_id/products' => 'shops#products'
-
+  
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :shops
   devise_for :users
 
