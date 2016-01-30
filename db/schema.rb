@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160129203515) do
+ActiveRecord::Schema.define(version: 20160130074147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,13 +24,13 @@ ActiveRecord::Schema.define(version: 20160129203515) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "achievements_shops", id: false, force: :cascade do |t|
+  create_table "achievements_sellers", id: false, force: :cascade do |t|
     t.integer "achievement_id"
-    t.integer "shop_id"
+    t.integer "seller_id"
   end
 
-  add_index "achievements_shops", ["achievement_id"], name: "index_achievements_shops_on_achievement_id", using: :btree
-  add_index "achievements_shops", ["shop_id"], name: "index_achievements_shops_on_shop_id", using: :btree
+  add_index "achievements_sellers", ["achievement_id"], name: "index_achievements_sellers_on_achievement_id", using: :btree
+  add_index "achievements_sellers", ["seller_id"], name: "index_achievements_sellers_on_seller_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20160129203515) do
 
   create_table "images", force: :cascade do |t|
     t.integer  "product_id"
-    t.integer  "shop_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "pic"
@@ -82,8 +82,8 @@ ActiveRecord::Schema.define(version: 20160129203515) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "shop_id"
+    t.integer  "buyer_id"
+    t.integer  "seller_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 20160129203515) do
     t.text     "description"
     t.float    "price"
     t.integer  "category_id"
-    t.integer  "shop_id"
+    t.integer  "seller_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -103,32 +103,6 @@ ActiveRecord::Schema.define(version: 20160129203515) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "shops", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.string   "name"
-    t.string   "avatar"
-    t.integer  "city_id"
-    t.integer  "manager_id"
-    t.text     "description"
-    t.text     "address"
-    t.text     "contacts"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.integer  "role"
-  end
-
-  add_index "shops", ["email"], name: "index_shops_on_email", unique: true, using: :btree
-  add_index "shops", ["reset_password_token"], name: "index_shops_on_reset_password_token", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -144,6 +118,8 @@ ActiveRecord::Schema.define(version: 20160129203515) do
     t.string   "avatar"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "type"
+    t.integer  "seller_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
