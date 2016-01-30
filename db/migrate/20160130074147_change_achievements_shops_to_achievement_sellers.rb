@@ -10,6 +10,9 @@ class ChangeAchievementsShopsToAchievementSellers < ActiveRecord::Migration
   end
 
   def down
-
+    create_table :achievements_shops, id: false do |t|
+      t.belongs_to :achievement
+      t.belongs_to :shop
+    end
   end
 end

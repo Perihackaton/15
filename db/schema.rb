@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130074147) do
+ActiveRecord::Schema.define(version: 20160130083509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,13 +24,13 @@ ActiveRecord::Schema.define(version: 20160130074147) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "achievements_sellers", id: false, force: :cascade do |t|
+  create_table "achievements_users", id: false, force: :cascade do |t|
     t.integer "achievement_id"
     t.integer "seller_id"
   end
 
-  add_index "achievements_sellers", ["achievement_id"], name: "index_achievements_sellers_on_achievement_id", using: :btree
-  add_index "achievements_sellers", ["seller_id"], name: "index_achievements_sellers_on_seller_id", using: :btree
+  add_index "achievements_users", ["achievement_id"], name: "index_achievements_users_on_achievement_id", using: :btree
+  add_index "achievements_users", ["seller_id"], name: "index_achievements_users_on_seller_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 20160130074147) do
     t.datetime "updated_at",                          null: false
     t.string   "type"
     t.integer  "seller_id"
+    t.string   "name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
